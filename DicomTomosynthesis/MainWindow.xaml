@@ -1,0 +1,71 @@
+﻿<Window x:Class="DicomTomosynthesis.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="DICOM Tomosynthesis by OPOCH" Height="550" Width="1000">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Background" Value="#0078D7"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+        <Style TargetType="Slider">
+            <Setter Property="Margin" Value="10"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="200"/>
+        </Grid.ColumnDefinitions>
+
+        <TabControl Grid.Column="0">
+            <TabItem Header="Image Viewer">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="60"/>
+                    </Grid.RowDefinitions>
+
+                    <Button x:Name="openFolderButton" Grid.Row="0" Click="Button_Click" Content="Open DICOM Folder"/>
+
+                    <Image x:Name="DicomImage" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1" Stretch="Uniform"/>
+
+                    <Button x:Name="PreviousFrameButton" Grid.Row="2" Click="PreviousFrameButton_Click" Content="🡄🡄🡄"/>
+                    <Button x:Name="NextFrameButton" Grid.Row="2" Grid.Column="1" Click="NextFrameButton_Click" Content="🡆🡆🡆"/>
+                    <Button x:Name="PauseContinueButton" Grid.Row="2" Grid.Column="2" Click="PauseContinueButton_Click" Content="Stop"/>
+
+                </Grid>
+            </TabItem>
+        </TabControl>
+
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+            </Grid.RowDefinitions>
+
+            <ToggleButton x:Name="InvertImageTogButton" Grid.Row="0" Checked="InvertImageTogButton_Checked" Unchecked="InvertImageTogButton_Unchecked" Content="Invert Image"/>
+            
+            <ToggleButton x:Name="GrayscaleTogButton" Grid.Row="1" Checked="GrayscaleTogButton_Checked" Unchecked="GrayscaleTogButton_Unchecked" Content="Grayscale"/>
+
+            <Button x:Name="IncreaseBrightness" Grid.Row="2" Click="IncreaseBrightness_Click" Content="IncreaseBrightness"/>
+            <Button x:Name="DecreaseBrightness" Grid.Row="3" Click="DecreaseBrightness_Click" Content="DecreaseBrightness"/>
+            <Button x:Name="IncreaseContrast" Grid.Row="4" Click="IncreaseContrast_Click" Content="IncreaseContrast"/>
+            <Button x:Name="DecreaseContrast" Grid.Row="5" Click="DecreaseContrast_Click" Content="DecreaseContrast"/>
+            <Slider x:Name="SpeedSlider" Minimum="1" Maximum="10" Value="7" TickPlacement="BottomRight" TickFrequency="1" Grid.Row="7" ValueChanged="SpeedSlider_ValueChanged"/>
+            
+            <Button x:Name="SaveAsGifButton" Grid.Row="6" Click="SaveAsGifButton_Click" Content="Save as GIF"/>
+            <Button x:Name="RemoveFiltersButton" Grid.Row="9" Click="RemoveFiltersButton_Click" Content="Remove All Filters"/>
+
+        </Grid>
+    </Grid>
+</Window>
